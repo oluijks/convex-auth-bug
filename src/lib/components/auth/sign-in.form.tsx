@@ -17,7 +17,10 @@ type SignInFormProps = {
   isSubmitting: boolean;
 };
 
-export const SignInForm: React.FC<SignInFormProps> = ({ onSubmit, isSubmitting }) => {
+export const SignInForm: React.FC<SignInFormProps> = ({
+  onSubmit,
+  isSubmitting,
+}) => {
   const form = useFormContext();
 
   // form.watch(formData => console.log(formData));
