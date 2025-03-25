@@ -5,6 +5,10 @@ import type { Id } from "./_generated/dataModel";
 
 import { query } from "./_generated/server";
 
+export const isSignedIn = query(async (ctx) => {
+  return !!(await getAuthUserId(ctx));
+});
+
 export const me = query({
   args: {},
   handler: async (ctx) => {
@@ -49,7 +53,7 @@ export const checkUserExists = query({
     // Check if a user exists with the given email
     const userByEmail = await ctx.db
       .query("users")
-      .withIndex("by_email", q => q.eq("email", args.email))
+      .withIndex("by_email", (q) => q.eq("email", args.email))
       .first();
 
     if (userByEmail) {
@@ -60,7 +64,7 @@ export const checkUserExists = query({
     if (args.name) {
       const userByName = await ctx.db
         .query("users")
-        .filter(q => q.eq(q.field("name"), args.name))
+        .filter((q) => q.eq(q.field("name"), args.name))
         .first();
 
       if (userByName) {
@@ -83,7 +87,7 @@ export const currentAuthenticatedUser = query({
 
     return await ctx.db
       .query("users")
-      .withIndex("by_email", q => q.eq("email", identity.email as string))
+      .withIndex("by_email", (q) => q.eq("email", identity.email as string))
       .unique();
   },
 });

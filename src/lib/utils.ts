@@ -8,5 +8,12 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function delay(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/** Wait for a condition to be true, checking frequently */
+export async function waitFor(fn: () => boolean) {
+  while (!fn()) {
+    await delay(10);
+  }
 }
