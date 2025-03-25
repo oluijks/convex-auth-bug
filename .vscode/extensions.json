@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "wix.vscode-import-cost",
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss",
+    "dejmedus.tailwind-sorter"
+  ]
+}
